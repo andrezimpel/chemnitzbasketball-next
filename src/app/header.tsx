@@ -7,8 +7,8 @@ const links = [
     label: 'Event'
   },
   {
-    href: '#video',
-    label: 'Video'
+    href: '#about',
+    label: 'Das Projekt'
   },
   {
     href: '#messages',
