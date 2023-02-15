@@ -2,16 +2,38 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+// custom models
+model events {
+  id            String          @id @unique @default(cuid())
+  name          String
+  starts_at     DateTime?
+  ends_at       DateTime
+  event_signups event_signups[]
+}
+
+model event_signups {
+  id        String @id @unique @default(cuid())
+  email     String
+  firstname String
+  lastname  String
+  event     events @relation(fields: [eventsId], references: [id])
+  eventsId  String
+}
+
+model votes {
+  id         String  @id @unique @default(cuid())
+  token      String
+  first_name String?
+  last_name  String?
+  email      String  @unique
+  age        Int?
+  message    String?
 }
