@@ -32,7 +32,7 @@ export default function RootLayout({
       <head />
       <body className="bg-black text-white">
         <LayoutHeader />
-        <main>{children}</main>
+        <main className="md:min-h-[calc(100vh-128px-56px-56px-216px)]">{children}</main>
         <LayoutFooter />
       </body>
     </html>
