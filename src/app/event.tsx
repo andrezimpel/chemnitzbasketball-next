@@ -2,7 +2,7 @@ import EventForm from './event-form'
 
 export default function Event(): JSX.Element {
   return (
-    <div id="event" className="container max-w-4xl mx-auto px-4 mt-8">
+    <div id="beteiligung" className="container max-w-4xl mx-auto px-4 mt-8">
       <div className="uppercase text-center space-y-3 md:space-y-6">
         <div>
           <div className="inline bg-purple-500 font-bold text-lg md:text-2xl lg:text-4xl">Projektbeteiligung</div>
