@@ -87,7 +87,7 @@ export default function EventForm() {
               id="optin"
               aria-describedby="comments-description"
               type="checkbox"
-              className="h-5 w-5 rounded border-gray-300 text-lime-800 focus:ring-lime-600"
+              className="h-5 w-5 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
               {...register("OPT_IN")}
             />
           </div>
