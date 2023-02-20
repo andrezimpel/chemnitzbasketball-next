@@ -13,9 +13,13 @@ interface EventFormProps {
 
 const FORM_URL = "https://f4ae8c7a.sibforms.com/serve/MUIEAHWpHkVY3QiB8xl_w0IVzdwNMNzQKtkaBsaDdm37IEjVeSV-QuCEFiLA5ri6vOymohzCGlnO_VUkkX8unDszIiwXwqLSmsmh_4EYWUiX7AH8Og1KQTfCT-vin2m6x0jbSndsjtRHkaguzbGtZwQ_IEAeF0lIpaC8k7Sq_41CKGIqwIBLURbHRMZKyohiMVuga_Z5qSjFjKGV?isAjax=1"
 
+function classNames(...classes: (string | boolean | undefined)[]) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export default function EventForm() {
   const [success, setSuccess] = useState<boolean>(false)
-  const { register, handleSubmit, setError, reset, formState: { errors } } = useForm<EventFormProps>({
+  const { register, handleSubmit, setError, reset, formState: { errors, isSubmitting } } = useForm<EventFormProps>({
     defaultValues: {
       VORNAME: '',
       NACHNAME: '',
@@ -48,16 +52,21 @@ export default function EventForm() {
         <p className='uppercase font-akzidenz text-base md:text-lg mb-2 text-left'>Anmeldung</p>
         <p>Wir freuen uns sehr, wernn ihr an der Präsentation teilnehmt. Damit wir abschätzen können wie groß der Rahmen wird, bitten wir euch um eine unverbindliche Anmeldung.</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className={
+        classNames(
+          isSubmitting && "animate-pulse pointer-events-none",
+          "w-full space-y-4"
+        )
+      }>
         {errors.root && <div className="self-start rounded-md font-bold bg-red-500 p-4 pb-3.5 text-red-900 text-sm">{errors.root.message}</div>}
         {success && (
-          <div className="flex self-start rounded-md font-bold bg-lime-500 p-4 pb-3.5 text-lime-900 text-sm">
+          <div className="flex self-start rounded-md font-bold bg-lime-500 px-4 pt-4 pb-3 text-lime-900 text-sm">
             <div>Deine Anmeldung war erfolgreich. Wir haben dir eine Mail zur Bestätigung gesendet. 🎉</div>
             <div className='ml-auto'>
               <div className="-mx-1.5 -my-1.5">
                 <button
                   type="button"
-                  className="inline-flex rounded-md bg-lime-100 p-1.5 text-lime-900 hover:bg-lime-100 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2 focus:ring-offset-lime-50"
+                  className="inline-flex rounded-md bg-transparent p-1.5 text-lime-900 hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-600 focus:ring-offset-2 focus:ring-offset-lime-50"
                   onClick={() => setSuccess(false)}
                 >
                   <span className="sr-only">Dismiss</span>
@@ -78,7 +87,7 @@ export default function EventForm() {
               id="optin"
               aria-describedby="comments-description"
               type="checkbox"
-              className="h-5 w-5 rounded border-gray-300 text-pink-600 focus:ring-pink-500"
+              className="h-5 w-5 rounded border-gray-300 text-lime-800 focus:ring-lime-600"
               {...register("OPT_IN")}
             />
           </div>
@@ -88,7 +97,18 @@ export default function EventForm() {
             </label>
           </div>
         </div>
-        <button className="uppercase font-bold inline-flex items-center rounded-md border border-transparent bg-purple-300 px-4 pt-2.5 pb-1.5 text-sm text-white shadow-sm hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">Absenden</button>
+        <button className="uppercase font-bold inline-flex items-center rounded-md border border-transparent bg-purple-300 px-4 pt-2.5 pb-1.5 text-sm text-white shadow-sm hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
+          {isSubmitting && (
+            <>
+              <svg className="animate-spin -ml-1 -mt-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <div>Wird übertragen...</div>
+            </>
+          )}
+          {!isSubmitting && "Absenden"}
+        </button>
       </form>
     </div>
   )
@@ -107,9 +127,19 @@ interface InputProps {
 function Input({ label, name, register, required = false, type, errors, autoComplete }: InputProps): JSX.Element {
   return (
     <div className='w-full'>
-      <label htmlFor={autoComplete} className='flex flex-col font-medium'>{label}</label>
-      <input id={autoComplete} type={type} autoComplete={autoComplete} {...register(name, { required })} className="w-full form-input text-purple-50 bg-purple-700 rounded-md border-transparent shadow-sm focus:border-purple-50 focus:ring-purple-50 pt-2.5 pb-1.5" />
-      {errors[name] && <div className='text-red-500 mt-1 text-sm pl-4'>Dieses Feld ist erforderlich.</div>}
+      <label htmlFor={autoComplete} className={
+        classNames(
+          errors[name] && "text-red-400",
+          "flex flex-col font-medium"
+        )
+      }>{label}</label>
+      <input id={autoComplete} type={type} autoComplete={autoComplete} {...register(name, { required })} className={
+        classNames(
+          errors[name] ? "border-red-400 focus:border-red-400 focus:ring-red-400" : "border-transparent focus:border-purple-50 focus:ring-purple-50",
+          "w-full form-input text-purple-50 bg-purple-700 rounded-md shadow-sm pt-2.5 pb-1.5"
+        )
+      } />
+      {errors[name] && <div className='text-red-400 mt-1 text-sm'>Bitte ausfüllen.</div>}
     </div>
   )
 }
