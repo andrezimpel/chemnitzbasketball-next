@@ -4,16 +4,16 @@ import Link from 'next/link'
 const links = [
   {
     href: '#event',
-    label: 'Event'
+    label: 'Vorstellung'
   },
   {
     href: '#about',
     label: 'Das Projekt'
   },
-  {
-    href: '#messages',
-    label: 'Nachrichten'
-  },
+  // {
+  //   href: '#messages',
+  //   label: 'Nachrichten'
+  // },
 ]
 
 export default function LayoutHeader(): JSX.Element {

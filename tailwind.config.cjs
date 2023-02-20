@@ -93,8 +93,12 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-akzidenz)'],
+        akzidenz: 'var(--font-akzidenz)',
+        overpass: 'Overpass Mono',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }

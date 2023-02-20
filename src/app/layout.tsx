@@ -1,3 +1,6 @@
+import "@fontsource/overpass-mono/500.css"
+import "@fontsource/overpass-mono/700.css"
+
 import localFont from '@next/font/local'
 import "../styles/globals.css"
 import LayoutFooter from "./footer"

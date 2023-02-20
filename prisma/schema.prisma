@@ -15,7 +15,7 @@ model events {
   id            String          @id @unique @default(cuid())
   name          String
   starts_at     DateTime?
-  ends_at       DateTime
+  ends_at       DateTime?
   event_signups event_signups[]
 }
 
