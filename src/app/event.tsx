@@ -21,7 +21,7 @@ export default function Event(): JSX.Element {
       </div>
       <div className="mt-14 font-overpass space-y-6">
         <EventForm />
-        <p className='md:text-lg text-justify'>Wir starten zwei Stunden vor dem Spiel der NINERS gegen Braunschweig um 16.00 Uhr. Ihr benögtigt <u>kein</u> Ticket für das Spiel, um an der Präsentation teilzunehmen.</p>
+        <p className='text-justify'>Wir starten zwei Stunden vor dem Spiel der NINERS gegen Braunschweig um 16.00 Uhr. Ihr benögtigt <u>kein</u> Ticket für das Spiel, um an der Präsentation teilzunehmen.</p>
       </div>
     </div>
   )
