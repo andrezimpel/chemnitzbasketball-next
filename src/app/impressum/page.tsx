@@ -8,7 +8,7 @@ export default function ImprintPage(): JSX.Element {
           </div>
         </div>
 
-        <div className="space-y-6 text-purple-50">
+        <div className="space-y-6 text-purple-50 text-justify">
           <p>Angaben gemäß § 5 TMG</p><p>CHEMNITZ BASKETBALL <br />
             Brühl 42<br />
             09111 Chemnitz <br />
