@@ -18,7 +18,7 @@ const links = [
 
 export default function LayoutHeader(): JSX.Element {
   return (
-    <header className='py-4 md:py-12 container mx-auto'>
+    <header className='py-4 md:py-12 container max-w-4xl mx-auto'>
       <div className="px-4 text-center text-xs space-y-4 flex items-center justify-between">
         <div>
           <Link href="/">
