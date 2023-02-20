@@ -1,6 +1,6 @@
 import Event from './event'
 
-export default function Page(): JSX.Element {
+export default function IndexPage(): JSX.Element {
   return (
     <div>
       <Event />
