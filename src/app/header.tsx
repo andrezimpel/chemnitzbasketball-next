@@ -34,7 +34,7 @@ export default function LayoutHeader(): JSX.Element {
         </div>
         <div className='flex flex-col md:flex-row items-end md:space-x-4'>
           {links.map(({ href, label }) => (
-            <a href={href} className="hover:underline hover:text-purple-50 text-base md:text-lg transition-colors">{label}</a>
+            <a key={href} href={href} className="hover:underline hover:text-purple-50 text-base md:text-lg transition-colors">{label}</a>
           ))}
         </div>
       </div>

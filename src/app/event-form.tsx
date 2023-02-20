@@ -1,21 +1,19 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { FieldErrors, SubmitHandler, useForm, UseFormRegister } from 'react-hook-form'
 
 interface EventFormProps {
-  eventId: string
   firstname: string
   lastname: string
   email: string
   optin: boolean
 }
 
-const FORM_URL = "https://6b7f2bc0.sibforms.com/serve/MUIEAA8Znd4utlSDiytsvFOQR5XI5iOo_Ev3JId6_9Cpj2kqBsp9Ur0VBzXTU9hLJcFI3Ht3mAchqhbr-kRFtftOWhw6_gLuHN9XBV3yao6Ome8qMvZCCQ4ZyCH_W0-N5D226rsCTgoEEPYPXDI_75YNkc7JKQDWMoUj6peJSZffwIdICxAx_2vtumxzMVQ6UTSSGpglAhTKBhkC"
+const FORM_URL = "https://6b7f2bc0.sibforms.com/serve/MUIEAA8Znd4utlSDiytsvFOQR5XI5iOo_Ev3JId6_9Cpj2kqBsp9Ur0VBzXTU9hLJcFI3Ht3mAchqhbr-kRFtftOWhw6_gLuHN9XBV3yao6Ome8qMvZCCQ4ZyCH_W0-N5D226rsCTgoEEPYPXDI_75YNkc7JKQDWMoUj6peJSZffwIdICxAx_2vtumxzMVQ6UTSSGpglAhTKBhkC?isAjax=1"
 
 export default function EventForm() {
   const { register, handleSubmit, formState: { errors } } = useForm<EventFormProps>({
     defaultValues: {
-      eventId: '70d34f09-4d23-470f-aacf-7d127420655b',
       firstname: '',
       lastname: '',
       email: '',
@@ -23,15 +21,20 @@ export default function EventForm() {
     }
   })
 
-  async function onSubmit(data: EventFormProps) {
+  const onSubmit: SubmitHandler<EventFormProps> = async (data: EventFormProps): Promise<void> => {
     console.log({ data })
+    const res = await fetch(FORM_URL, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+    const json = await res.json()
+    console.log({ json })
   }
 
   return (
     <div className="bg-purple-500 rounded-xl p-4 space-y-6">
       <p className='uppercase font-akzidenz text-base md:text-lg mb-2 text-left'>Jetzt unverbindlich anmelden</p>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <input {...register("eventId")} type="hidden" />
         <div className='max-lg:space-y-4 lg:flex lg:space-x-4 mb-6'>
           <Input label="Vorname" name="firstname" required={true} register={register} errors={errors} />
           <Input label="Nachname" name="lastname" required={true} register={register} errors={errors} />
@@ -63,14 +66,14 @@ export default function EventForm() {
 
 interface InputProps {
   label: string
-  name: string
+  name: "firstname" | "lastname" | "email" | "optin"
   required?: boolean
-  register: any
+  register: UseFormRegister<EventFormProps>
   type?: "text" | "email"
-  errors: any
+  errors: FieldErrors<EventFormProps>
 }
 
-function Input({ label, name, register, required = false, type, errors = [] }: InputProps): JSX.Element {
+function Input({ label, name, register, required = false, type, errors }: InputProps): JSX.Element {
   return (
     <div className='w-full'>
       <label htmlFor={name} className='flex flex-col font-medium'>{label}</label>
