@@ -17,7 +17,7 @@ export const initializeAndTrackGoogleAnalytics = (options: GoogleAnalyticsOption
     addGoogleAnalytics(options).then((status: boolean) => {
       if (status) {
         initializeGoogleAnalytics(options)
-        // trackGoogleAnalytics(options, pathname)
+        trackGoogleAnalytics(options, pathname)
       }
     })
   }
