@@ -18,7 +18,7 @@ export default function Video(): JSX.Element {
     <div id="about" className="my-12 space-y-8">
       <div className="container max-w-4xl mx-auto px-4 space-y-4">
         <h2 className="inline font-bold bg-pink-600 text-lg md:text-xl uppercase">Häufige Fragen</h2>
-        <div className="space-y-2 font-overpass text-justify">
+        <div className="space-y-2 font-overpass md:text-justify">
           <p className="md:text-lg">CHEMNITZ BASKETBALL bringt die Liebe der Stadt für Kunst, Kultur und Sport zum Ausdruck. Wir glauben fest daran, dass ein neuer Basketballplatz auf dem Konkordiapark eine Bereicherung für unsere Stadt ist. Helft uns das Projekt umzusetzen!</p>
         </div>
       </div>
@@ -28,7 +28,7 @@ export default function Video(): JSX.Element {
             <div className="mb-2 uppercase">
               <div className="inline text-lilac-800 bg-lilac-200">{question}</div>
             </div>
-            <div className="font-overpass text-justify">{answer}</div>
+            <div className="font-overpass md:text-justify">{answer}</div>
           </div>
         ))}
       </div>
