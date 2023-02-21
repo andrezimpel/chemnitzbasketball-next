@@ -50,7 +50,7 @@ export default function EventForm() {
     <div className="bg-purple-500 rounded-xl p-4 space-y-4">
       <div>
         <p className='uppercase font-akzidenz text-base md:text-lg mb-2 text-left'>Anmeldung</p>
-        <p>Wir freuen uns sehr, wernn ihr an der Präsentation teilnehmt. Damit wir abschätzen können wie groß der Rahmen wird, bitten wir euch um eine unverbindliche Anmeldung.</p>
+        <p>Wir freuen uns sehr, wernn ihr an der Präsentation teilnehmt. Damit wir besser abschätzen können, wie viele Teilnehmer:innen kommen, bitten wir euch um eine unverbindliche Anmeldung.</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={
         classNames(
