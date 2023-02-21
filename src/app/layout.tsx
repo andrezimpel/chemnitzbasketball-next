@@ -2,7 +2,6 @@ import "@fontsource/overpass-mono/500.css"
 import "@fontsource/overpass-mono/700.css"
 
 import localFont from '@next/font/local'
-import Analytics from "../components/analytics"
 import "../styles/globals.css"
 import LayoutFooter from "./footer"
 import LayoutHeader from "./header"
@@ -35,7 +34,7 @@ export default function RootLayout({
         <LayoutHeader />
         <main className="md:min-h-[calc(100vh-128px-56px-56px-216px)]">{children}</main>
         <LayoutFooter />
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   )
