@@ -32,7 +32,7 @@ async function getMessages() {
     })
   })
   const { data } = await res.json()
-  return splitToChunks(data?.messages.filter((m: Message) => m.message.length < 140).sort((a: Message, b: Message) => (a.message.length > b.message.length) ? 1 : -1), 5)
+  return splitToChunks(data?.messages.filter((m: Message) => m.message.length < 180).sort((a: Message, b: Message) => (a.message.length > b.message.length) ? 1 : -1), 6)
 }
 
 export default async function IndexPage() {

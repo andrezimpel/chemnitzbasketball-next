@@ -9,7 +9,7 @@ export interface Message {
 }
 
 export default function Messages({ chunks }: { chunks: Message[][] }) {
-  const speeds = [40, 50, 55, 60, 65]
+  const speeds = [70, 60, 65, 50, 55, 45]
 
   return (
     <div className="space-y-4">
@@ -23,7 +23,7 @@ export default function Messages({ chunks }: { chunks: Message[][] }) {
           <div className="flex space-x-4">
             {chunk.map((message, j) => (
               <div key={j} className="inline-block rounded-md bg-purple-800 text-purple-50 p-4 font-overpass flex flex-col justify-center">
-                <div className="max-w-xl">{message.message}</div>
+                <div className="max-w-sm md:max-w-xl">{message.message}</div>
                 <div className="text-sm text-purple-300">- {message.name}{message.age && `(${message.age})`}</div>
               </div>
             ))}
