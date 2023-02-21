@@ -1,6 +1,6 @@
 interface ButtonProps {
-  onClick: any,
-  children: any,
+  onClick: React.MouseEventHandler<HTMLButtonElement>,
+  children: React.ReactNode,
   variant?: 'default' | 'link'
 }
 
