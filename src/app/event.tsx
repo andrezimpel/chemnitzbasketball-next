@@ -19,7 +19,7 @@ export default function Event(): JSX.Element {
         <p className='md:text-lg md:text-justify'>Es geht in den Endspurt! Wir wollen gemeinsam mit euch das Basketballfeld am Konkordiapark gestalten. Erste architektonische Entwürfe gibt es schon und diese möchten wir mit euch besprechen. Was sind eure Wünsche und Anregungen, was sollten wir noch berücksichtigen und was darf auf keinen Fall fehlen? Kommt in die Messe und tauscht euch mit uns aus!</p>
         <p className='md:text-lg md:text-justify'>Wir sind eine große und aktive Community. Es ist wichtig, dass wir genau das der Stadt zeigen.</p>
         <p className='md:text-lg md:text-justify text-transparent bg-clip-text bg-gradient-to-r from-purple-100 to-purple-400 animate-pulse duration-100 delay-100'>
-          Je mehr Menschen zur Präsentation kommen, desto wahrscheinlicher ist auch der Bau eines neuen Basketballplatzes.
+          Je mehr Menschen zur Präsentation kommen, desto wahrscheinlicher ist auch der Bau des neuen Basketballplatzes.
         </p>
         <EventForm />
         <p className='md:text-justify'>Wir starten zwei Stunden vor dem Spiel der NINERS gegen Braunschweig, um 16.00 Uhr. Ihr benögtigt <u>kein</u> Ticket für das Spiel, um an der Präsentation teilzunehmen.</p>
