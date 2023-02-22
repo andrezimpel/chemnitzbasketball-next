@@ -1,3 +1,5 @@
+import VideoPlayer from "../components/video-player"
+
 export default function Video(): JSX.Element {
   return (
     <div id="about" className="my-12 space-y-4">
@@ -8,7 +10,10 @@ export default function Video(): JSX.Element {
         </div>
       </div>
       <div className="container max-w-5xl mx-auto px-4">
-        <iframe className="w-full aspect-video" src="https://www.youtube-nocookie.com/embed/ddQ6U56e9-k" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+        <VideoPlayer
+          id="ddQ6U56e9-k"
+          title="Projekt Konkordiapark | CHEMNITZ BASKETBALL"
+        />
       </div>
     </div>
   )
