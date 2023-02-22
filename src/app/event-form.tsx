@@ -61,7 +61,7 @@ export default function EventForm() {
         {errors.root && <div className="self-start rounded-md font-bold bg-red-500 p-4 pb-3.5 text-red-900 text-sm">{errors.root.message}</div>}
         {success && (
           <div className="flex self-start rounded-md font-bold bg-lime-500 px-4 pt-4 pb-3 text-lime-900 text-sm">
-            <div>Deine Anmeldung war erfolgreich. Wir haben dir eine Mail zur Bestätigung gesendet. 🎉</div>
+            <div>Deine Anmeldung war erfolgreich. Wir haben dir eine Mail zur Bestätigung gesendet. Bitte klick auf den Link in der Email, damit deine Anmeldung bei uns eingeht. 🎉</div>
             <div className='ml-auto'>
               <div className="-mx-1.5 -my-1.5">
                 <button
