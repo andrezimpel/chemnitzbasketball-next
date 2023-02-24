@@ -2,6 +2,7 @@ import About from './about'
 import Architecture from './architecture'
 import Event from './event'
 import Faq from './faq'
+import Invitations from './invitations'
 import Messages, { Message } from './messages'
 
 function splitToChunks(array: Message[], parts: number) {
@@ -40,6 +41,7 @@ export default async function IndexPage() {
   return (
     <div className="space-y-8 md:space-y-14">
       <Event />
+      <Invitations />
       <Messages chunks={data} />
       <Architecture />
       <About />
