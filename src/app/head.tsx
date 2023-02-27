@@ -12,14 +12,14 @@ export default function Head() {
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <meta name="theme-color" content="#a7a4e0" />
       <meta name="twitter:description" content="Das Projekt CHEMNITZ BASKETBALL bringt die Liebe der Stadt für Kunst, Kultur und Sport zum Ausdruck. Helft uns, es umzusetzen!" />
-      <meta name="twitter:title" content="Startseite" />
+      <meta name="twitter:title" content="Konkordiapark" />
       <meta name="twitter:creator" content="@andrezimpel" />
       <meta name="twitter:card" content="summary" />
       <meta property="og:image" content="https://www.chemnitzbasketball.com/sharing-image.jpg" />
       <meta name="twitter:image" content="https://www.chemnitzbasketball.com/sharing-image.jpg" />
       <meta property="og:type" content="website" />
       <meta property="og:description" content="Das Projekt CHEMNITZ BASKETBALL bringt die Liebe der Stadt für Kunst, Kultur und Sport zum Ausdruck. Helft uns, es umzusetzen!" />
-      <meta property="og:title" content="Startseite" />
+      <meta property="og:title" content="Konkordiapark" />
       <meta name="description" content="Das Projekt CHEMNITZ BASKETBALL bringt die Liebe der Stadt für Kunst, Kultur und Sport zum Ausdruck. Helft uns, es umzusetzen!" />
     </>
   )
