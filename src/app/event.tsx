@@ -12,7 +12,7 @@ export default function Event(): JSX.Element {
           <div className="text-xs md:text-sm text-purple-200">2h vor dem Spiel der <span className="hover:text-orange-500">NINERS</span><span className="max-md:hidden"> gegen Braunschweig</span></div>
         </div>
         <div>
-          <div className="inline bg-lime-500 text-black font-bold md:text-xl lg:text-2xl">Messe Chemnitz</div>
+          <div className="inline bg-lime-500 text-black font-bold md:text-xl lg:text-2xl">Messe Halle 2</div>
         </div>
       </div>
       <div className="mt-10 font-overpass space-y-6">
