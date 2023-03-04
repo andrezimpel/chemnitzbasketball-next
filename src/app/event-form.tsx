@@ -49,8 +49,8 @@ export default function EventForm() {
   return (
     <div className="bg-purple-500 rounded-xl p-4 space-y-4">
       <div>
-        <p className='uppercase font-akzidenz text-base md:text-lg mb-2 text-left'>Anmeldung</p>
-        <p>Wir freuen uns sehr, wenn ihr an der Präsentation teilnehmt. Damit wir besser abschätzen können, wie viele Teilnehmer:innen kommen, bitten wir euch um eine unverbindliche Anmeldung.</p>
+        <p className='uppercase font-akzidenz text-base md:text-lg mb-2 text-left'>Deine Stimme zählt</p>
+        <p>Lasst uns der Stadt zeigen, wie viele hinter dem Projekt stehen.</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={
         classNames(
