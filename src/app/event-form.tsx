@@ -11,7 +11,7 @@ interface EventFormProps {
   OPT_IN: boolean
 }
 
-const FORM_URL = "https://f4ae8c7a.sibforms.com/serve/MUIEAHWpHkVY3QiB8xl_w0IVzdwNMNzQKtkaBsaDdm37IEjVeSV-QuCEFiLA5ri6vOymohzCGlnO_VUkkX8unDszIiwXwqLSmsmh_4EYWUiX7AH8Og1KQTfCT-vin2m6x0jbSndsjtRHkaguzbGtZwQ_IEAeF0lIpaC8k7Sq_41CKGIqwIBLURbHRMZKyohiMVuga_Z5qSjFjKGV?isAjax=1"
+const FORM_URL = "https://f4ae8c7a.sibforms.com/serve/MUIEAMb-uj2abmmygAZbhh8fc7sTNTY8Q1FrowNdKfdKSnXKmGJ8hXVtQUC0nWlqBU5oqp2EoXWrPmbk_q9CWYiylqonieulksLUKISqLEvfUnve5zEny0iGg2wo6l_UV-RCjzzvdnVjFLIegePINv0oVysC8_eAF6AKPP4rEspMn1W7G8xIUBwOmqVD1T9rk3Wav_MtyHG5Djh1?isAjax=1"
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
