@@ -18,6 +18,11 @@ const invitations: Invitation[] = [
     name: "Aher Uguak"
   },
   {
+    title: "Einladung Kevin Yebo",
+    id: "xGLoB4Ao2Zk",
+    name: "Kevin Yebo"
+  },
+  {
     title: "Einladung Andre Zimpel",
     id: "SRO1t7sS3nU",
     name: "Andre Zimpel"
