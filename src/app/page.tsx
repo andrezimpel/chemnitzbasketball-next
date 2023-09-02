@@ -1,5 +1,6 @@
 import About from './about'
 import Architecture from './architecture'
+import DesignVoting from './components/design-voting'
 import Event from './event'
 import Faq from './faq'
 import Invitations from './invitations'
@@ -40,6 +41,7 @@ export default async function IndexPage() {
   const data = await getMessages()
   return (
     <div className="space-y-8 md:space-y-14">
+      <DesignVoting />
       <Event />
       <Invitations />
       <Messages chunks={data} />
