@@ -16,7 +16,6 @@
     "@fontsource/overpass-mono": "^4.5.11",
     "@fontsource/roboto-mono": "^4.5.10",
     "@heroicons/react": "^2.0.16",
-    "@next/font": "^13.1.6",
     "@prisma/client": "^4.9.0",
     "@react-email/body": "^0.0.1",
     "@react-email/button": "^0.0.6",
