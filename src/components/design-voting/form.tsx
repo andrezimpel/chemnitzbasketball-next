@@ -106,7 +106,7 @@ function Component(data) {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={twMerge(
-          votedToday && "pointer-events-none opacity-70",
+          (votedToday || isSubmitSuccessful) && "pointer-events-none opacity-70",
           "space-y-6"
         )}
       >
