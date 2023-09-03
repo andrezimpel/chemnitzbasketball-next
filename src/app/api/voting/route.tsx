@@ -20,6 +20,8 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const email = searchParams.get('email')
 
+  console.log({ email })
+
   const user = await prisma.user.findUnique({
     where: {
       email
@@ -33,7 +35,11 @@ export async function GET(request: Request) {
     }
   })
 
-  return NextResponse.json({ user, votedToday: checkedVotedToday(user?.votes) })
+  const votedToday = checkedVotedToday(user?.votes)
+
+  console.log({ user, votedToday })
+
+  return NextResponse.json({ user, votedToday })
 }
 
 export async function POST(request: Request) {

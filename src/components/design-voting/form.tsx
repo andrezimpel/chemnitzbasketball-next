@@ -42,7 +42,7 @@ const isBrowser = typeof window !== "undefined"
 export default function DesignVotingFrorm() {
   const email = isBrowser && localStorage.getItem(NAMESPACE)
   const { data, error, isLoading } = useSWR(
-    `/api/voting?email=${email}`,
+    `/api/voting?email=${encodeURIComponent(email)}`,
     fetcher
   )
 
@@ -90,7 +90,7 @@ function Component(data) {
   }
 
   return (
-    <div id="votingForm" className="border-2 rounded-lg border-purple-600 p-2 pb-0 md:p-6 md:pb-4 relative space-y-6">
+    <div id="votingForm" className="border-2 rounded-lg border-purple-600 p-2 md:p-6 relative space-y-6">
       {votedToday && (
         <div className='text-white bg-purple-500 rounded-lg p-4 space-y-4'>
           <p>Du hast heute schon abgestimmt. Wir freuen uns sehr, wenn du deine Stimme morgen erneut abgibst.</p>
@@ -122,70 +122,33 @@ function Component(data) {
             />
           ))}
         </div>
-        <div className="space-y-2">
-          <Input
-            label="E-Mail-Adresse"
-            name="email"
-            register={register}
-            errors={errors}
-            type="email"
-            help="Wir benötigen deine E-Mail-Adresse, um deine Stimme zu verifizieren. Du erhältst eine E-Mail mit einem Link, den du bestätigen musst, damit deine Stimme zählt."
-          />
-        </div>
-        <div className='sticky bottom-0 flex items-center justify-end space-x-4 py-2 bg-black bg-opacity-90 backdrop-blur-md'>
-          {count === 0 ? <p className='text-sm leading-4'>Wähle bis zu 3 Designs aus.</p> : <p className='text-sm leading-4'>{count} von bis zu 3 ausgewählt.</p>}
-          <button
-            className={twMerge(
-              "uppercase font-bold inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 pt-2.5 pb-1.5 text-sm text-white shadow-sm hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2",
-              (count === 0 || email === "") && "cursor-not-allowed pointer-events-none bg-purple-200",
-            )}
-          >Weiter</button>
-        </div>
+        {!votedToday && (
+          <>
+            <div className="space-y-2">
+              <Input
+                label="E-Mail-Adresse"
+                name="email"
+                register={register}
+                errors={errors}
+                type="email"
+                help="Wir benötigen deine E-Mail-Adresse, um deine Stimme zu verifizieren. Du erhältst eine E-Mail mit einem Link, den du bestätigen musst, damit deine Stimme zählt."
+              />
+            </div>
+            <div className='sticky bottom-0 flex items-center justify-end space-x-4 py-2 bg-black bg-opacity-90 backdrop-blur-md'>
+              {count === 0 ? <p className='text-sm leading-4'>Wähle bis zu 3 Designs aus.</p> : <p className='text-sm leading-4'>{count} von bis zu 3 ausgewählt.</p>}
+              <button
+                className={twMerge(
+                  "uppercase font-bold inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 pt-2.5 pb-1.5 text-sm text-white shadow-sm hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2",
+                  (count === 0 || email === "") && "cursor-not-allowed pointer-events-none bg-purple-200",
+                )}
+              >Weiter</button>
+            </div>
+          </>
+        )}
       </form>
     </div>
   )
 }
-
-
-// export function DesignVotingFrorms() {
-//   const _state = isBrowser && localStorage.getItem(NAMESPACE) ? JSON.parse(localStorage.getItem(NAMESPACE)) : defaultState
-//   const [state, setState] = useState<State>(_state)
-//   const todaysVote = useMemo<boolean>(() => {
-//     const today = new Date()
-//     const year = today.getFullYear()
-//     const month = String(today.getMonth() + 1).padStart(2, '0') // Months are 0-based, so add 1 and then pad
-//     const day = String(today.getDate()).padStart(2, '0')
-
-//     return state?.votes[`${year}${month}${day}`]
-//   }, [state])
-//   const [justVoted, setJustVoted] = useState<boolean>(false)
-
-//   console.log(state, { todaysVote })
-
-// const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
-//   defaultValues: {
-//     design: ["1", "2"] || [],
-//     email: state.user?.email || "",
-//     namespace: NAMESPACE
-//   }
-// })
-
-
-
-
-
-//   if (justVoted) {
-//     return (
-//       <div id="justVoted" className="border-2 rounded-lg border-purple-600 p-2 md:p-6 relative space-y-4">
-
-//       </div>
-//     )
-//   }
-
-//   return (
-
-//   )
-// }
 
 function Option({ register, value, selected, disabled, file }: { register: any, value: string, selected: string[], disabled: boolean, file?: string }) {
   const isSelected = useMemo(() => {
@@ -217,6 +180,7 @@ function Option({ register, value, selected, disabled, file }: { register: any, 
         height={500}
         alt={`Design #${value}`}
       />
+      <div className='font-overpass text-white leading-5 mt-4'>Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function.</div>
     </label>
   )
 }
@@ -247,8 +211,8 @@ function Input({ label, name, register, required = false, type, errors, autoComp
           "w-full form-input text-purple-50 bg-purple-700 rounded-md shadow-sm pt-2.5 pb-1.5"
         )
       } />
-      {errors[name] && <div className='text-red-400 mt-1 text-sm font-overpass'>Bitte ausfüllen.</div>}
-      {help && <div className='text-gray-400 mt-1 text-sm font-overpass'>{help}</div>}
+      {errors[name] && <div className='text-red-400 mt-2 text-sm font-overpass'>Bitte ausfüllen.</div>}
+      {help && <div className='text-gray-400 mt-2 text-sm font-overpass'>{help}</div>}
     </div>
   )
 }
