@@ -1,4 +1,4 @@
-import VideoPlayer from "../components/video-player"
+import VideoPlayer from "./video-player"
 
 export default function Video(): JSX.Element {
   return (

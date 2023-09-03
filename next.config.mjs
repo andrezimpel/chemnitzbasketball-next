@@ -8,9 +8,10 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   experimental: {
-    appDir: true
+    appDir: true,
+    serverActions: true
   },
 
   /**

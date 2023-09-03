@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 const links = [
   {
-    href: '#beteiligung',
-    label: 'Beteiligung'
+    href: '#voting',
+    label: 'Abstimmung'
   },
   {
     href: '#about',
