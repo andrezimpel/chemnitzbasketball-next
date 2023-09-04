@@ -6,6 +6,7 @@ export const config = {
 }
 
 export function middleware(request: NextRequest) {
+  console.log({ geo: request.geo })
   let ip = request.ip ?? request.headers.get('x-real-ip')
   const forwardedFor = request.headers.get('x-forwarded-for')
   if (!ip && forwardedFor) {
