@@ -1,4 +1,4 @@
-import VideoPlayer from "../components/video-player"
+import VideoPlayer from "./video-player"
 
 interface Invitation {
   title: string

@@ -1,11 +1,20 @@
 import "@fontsource/overpass-mono/500.css"
 import "@fontsource/overpass-mono/700.css"
-
-import localFont from '@next/font/local'
-import Analytics from "../components/analytics"
 import "../styles/globals.css"
+
+import localFont from "next/font/local"
+import Analytics from "../components/analytics"
 import LayoutFooter from "./footer"
 import LayoutHeader from "./header"
+
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | CHEMNITZ BASKETBALL',
+    absolute: 'CHEMNITZ BASKETBALL',
+  },
+}
 
 const akzidenz = localFont({
   src: [

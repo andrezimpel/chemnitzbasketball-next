@@ -1,9 +1,16 @@
-import About from './about'
-import Architecture from './architecture'
-import Event from './event'
-import Faq from './faq'
-import Invitations from './invitations'
-import Messages, { Message } from './messages'
+import type { Metadata } from 'next'
+import About from '../components/about'
+import Architecture from '../components/architecture'
+import DesignVoting from '../components/design-voting'
+import Event from '../components/event'
+import Faq from '../components/faq'
+import Invitations from '../components/invitations'
+import Messages, { Message } from '../components/messages'
+
+export const metadata: Metadata = {
+  title: 'Startseite | CHEMNITZ BASKETBALL',
+  description: '...',
+}
 
 function splitToChunks(array: Message[], parts: number) {
   let result = []
@@ -38,13 +45,15 @@ async function getMessages() {
 
 export default async function IndexPage() {
   const data = await getMessages()
+
   return (
     <div className="space-y-8 md:space-y-14">
-      <Event />
-      <Invitations />
+      <DesignVoting />
       <Messages chunks={data} />
       <Architecture />
       <About />
+      <Invitations />
+      <Event />
       <Faq />
     </div>
   )
