@@ -1,4 +1,5 @@
 import { PrismaClient, Vote } from '@prisma/client'
+import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
@@ -32,7 +33,10 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const email = searchParams.get('email') || ''
 
-  console.log({ ip: request.headers })
+  const headersList = headers()
+  const ip = headersList.get('x-ip-from-middleware')
+
+  console.log({ ip })
 
   const user = await prisma.user.findUnique({
     where: {
@@ -107,7 +111,7 @@ export async function POST(request: Request) {
   })
 
   if (!user.emailVerified) {
-    const transporter = nodemailer.createTransport({
+    const transporter = await nodemailer.createTransport({
       host: "mail-de.maxcluster.net",
       port: 587,
       secure: false, // upgrade later with STARTTLS
