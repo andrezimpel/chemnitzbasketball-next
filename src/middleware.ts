@@ -6,7 +6,6 @@ export const config = {
 }
 
 export function middleware(request: NextRequest) {
-  console.log({ geo: request.geo })
   let ip = request.ip ?? request.headers.get('x-real-ip')
   const forwardedFor = request.headers.get('x-forwarded-for')
   if (!ip && forwardedFor) {
@@ -16,6 +15,7 @@ export function middleware(request: NextRequest) {
   // Clone the request headers and set a new header `x-hello-from-middleware1`
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set('x-ip-from-middleware', ip)
+  requestHeaders.set('x-geo', JSON.stringify(request.geo))
 
   // You can also set request headers in NextResponse.rewrite
   const response = NextResponse.next({

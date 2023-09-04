@@ -28,6 +28,7 @@ model Vote {
   id          String       @id @unique @default(cuid())
   namespace   String
   ipAddress   String?
+  geoData     Json?
   userId      String
   user        User         @relation(fields: [userId], references: [id])
   createdAt   DateTime     @default(now())

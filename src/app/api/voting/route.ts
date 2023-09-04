@@ -138,6 +138,10 @@ export async function POST(request: Request) {
 
   if (hasVoteToday) return NextResponse.json({ user: _user, votedToday: true })
 
+  const geo = headersList.get('x-geo')
+
+  console.log({ geo })
+
   const voteOptions = design.map(val => {
     return { value: val }
   })
