@@ -47,7 +47,7 @@ export default function DesignVoting() {
         </div>
         <div className="mt-10 space-y-4">
           <h2 className="text-xl uppercase">Artists</h2>
-          <p className='font-overpass md:text-lg md:text-justify'>Während des Votings könnt ihr <u>nicht</u> sehen, welcher Artist welches Design erstellt hat. Es geht nicht darum, für die Person zu stimmen, die wir am meisten mögen, sondern um das beste Design.</p>
+          <p className='font-overpass md:text-lg md:text-justify'>Während des Votings könnt ihr <u>nicht</u> sehen, welcher Artist welches Design erstellt hat. Es geht nicht darum, für die Person zu stimmen, die ihr am meisten mögt, sondern um das beste Design.</p>
           <div className='space-y-4 grid grid-cols-1 md:grid-cols-2'>
             {artists.map((artist, index) => (
               <div key={index} className="flex gap-4 items-center">

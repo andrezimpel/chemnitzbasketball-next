@@ -97,7 +97,7 @@ function Component(data) {
       )}
       {!votedToday && isSubmitSuccessful && (
         <div className='text-white bg-purple-500 rounded-lg p-4 space-y-4 font-overpass'>
-          <p>Wir freuen uns ganz sehr über deine Stimme! Du erhältst eine E-Mail mit einem Link, den du bestätigen musst, damit deine Stimme zählt. Das machen wir, um deine Stimme zu verifizieren.</p>
+          <p>Wir freuen uns ganz sehr über deine Stimme! Du erhältst eine E-Mail mit einem Link, den du bestätigen musst, damit deine Stimme zählt. Das machen wir, um deine Stimme zu verifizieren. Falls du keine E-Mail bekommen hast, schreibe uns bitte an contact@chemnitzbasketball.com.</p>
           <p>🏀🖤🤎❤️🧡💛💚💙💜🤍</p>
         </div>
       )}
