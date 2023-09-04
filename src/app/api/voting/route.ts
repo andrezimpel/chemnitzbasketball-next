@@ -86,7 +86,7 @@ export async function GET(request: Request) {
 
   const headersList = headers()
   const ip = headersList.get('x-ip-from-middleware')
-  const geo = headersList.get('x-geo')
+  const geo = JSON.parse(headersList.get('x-geo') || '{}')
 
   console.log({ geoInGet: geo })
 
