@@ -195,7 +195,7 @@ Chemnitz Basketball
 
     let mailOptions = {
       from: 'CHEMNITZ BASKETBALL <contact@chemnitzbasketball.com>',
-      to: 'andrezimpel@me.com',
+      to: user.email,
       subject: 'Bitte bestätige deine E-Mail-Adresse',
       text
     }
