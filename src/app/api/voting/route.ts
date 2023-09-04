@@ -54,6 +54,8 @@ const MAX_DAILY_VOTES = 5
 function checkedVotedToday(votes: Vote[] = []) {
   const today = new Date()
 
+  console.log({ today })
+
   const arr = votes.map(vote => {
     const createdAt = new Date(vote.createdAt)
     console.log({ vote, t: moment(vote.createdAt).isSame(new Date(), "day") })
