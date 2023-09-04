@@ -1,4 +1,5 @@
 import { PrismaClient, Vote } from '@prisma/client'
+import moment from 'moment'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
@@ -64,19 +65,29 @@ function checkedVotedToday(votes: Vote[] = []) {
 }
 
 async function getIpVotes(ip: string) {
-  const now = new Date()
-  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-  const endOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
+  const now = moment()
+  const startOfToday = now.startOf('day').toDate()
+  const endOfToday = now.endOf('day').toDate()
 
-  return await prisma.vote.findMany({
+  console.log({
+    startOfToday, endOfToday
+  })
+
+  const _ip = "79.195.54.53"
+
+  const votis = await prisma.vote.findMany({
     where: {
-      ipAddress: ip,
+      ipAddress: _ip,
       createdAt: {
         gte: startOfToday,
         lt: endOfToday
       }
     }
   })
+
+  console.log({ votis })
+
+  return votis
 }
 
 export async function GET(request: Request) {
