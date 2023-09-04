@@ -9,7 +9,7 @@ const questions = [
   },
   {
     question: 'Wie soll der Platz aussehen?',
-    answer: "Das ist aktuell noch offen. Es gibt aber zahlreiche Ideen. Vielmehr geht es im ersten Schritt darum, die nötige Aufmerksamkeit zu generieren. Wichtig ist nur, dass das spätere Design neuartig und kulturell relevant ist."
+    answer: "Das befindet sich aktuell in einer Abstimmung. Scroll gern nach oben und gib deine Stimme ab! :-)"
   }
 ]
 
