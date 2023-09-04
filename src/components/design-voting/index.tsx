@@ -7,7 +7,7 @@ const artists = [
   { name: "Andre Zimpel", file: "andre.jpg", instagram: "andrezimpel" },
   { name: "Antonia Viola", file: "antonia.jpg", instagram: "antoniaviola_com" },
   { name: "Johanna Hertel", file: "johanna.jpg", instagram: "johannahertel" },
-  { name: "Sybille Hornung", file: "sybille.jpg", instagram: "sibvlle" }
+  { name: "Sibylle Hornung", file: "sybille.jpg", instagram: "sibvlle" }
 ]
 
 export default function DesignVoting() {
