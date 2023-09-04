@@ -61,6 +61,8 @@ function checkedVotedToday(votes: Vote[] = []) {
       createdAt.getFullYear() === today.getFullYear()
   })
 
+  console.log({ arr })
+
   return arr.includes(true)
 }
 
