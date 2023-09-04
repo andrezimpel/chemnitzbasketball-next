@@ -6,14 +6,46 @@ import nodemailer from 'nodemailer'
 const prisma = new PrismaClient()
 
 const courtData = [
-  { value: "1", file: '01.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
-  { value: "2", file: '02.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
-  { value: "3", file: '03.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
-  { value: "4", file: '04.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
-  { value: "5", file: '05.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
-  { value: "6", file: '06.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
-  { value: "7", file: '07.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
-  { value: "8", file: '08.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." }
+  {
+    value: "1",
+    file: '01.png',
+    description: 'Auf dem Brühl steht ein großes Zuhause. Der neue Court soll ein Zuhause für alle, die Basketball lieben, werden. Seine abstrakten Formen greifen die Spiellinien auf und bilden das Wort "Home".'
+  },
+  {
+    value: "2",
+    file: '02.png',
+    description: "Schon von Weitem ist der Basketballplatz kaum zu übersehen. Die sich überschneidenden Kreise repräsentieren die Begegnungspunkte, die sich zwischen verschiedenen Kulturen und Generationen auf dem Platz bilden. Die lebhaften und kräftigen Farben fallen unmittelbar ins Blickfeld und erfassen die Dynamik des Stadtlebens sowie des Basketballspiels."
+  },
+  {
+    value: "3",
+    file: '03.png',
+    description: 'Basketball ist ein Sport, der Jugend, Fashion, Musik und ganze Kulturen begeistert. Mit diesem Design wollten wir das in unserer Gestaltung ausdrücken. Wir möchten die Gemeinschaft Chemnitz hervorheben, und etwas erschaffen, was die Basketball Community miteinbezieht, und womit sich jede*r identifizieren kann.'
+  },
+  {
+    value: "4",
+    file: '04.png',
+    description: 'Das Design zeigt die starke Verbindung von Basketball, urbanem Streetstyle und der Hiphop-Kultur. Mit Formen, die an Graffitis erinnern, entsteht eine unglaubliche Dynamik, die die Bedeutung und Werte der weltweiten Subkultur betont.'
+  },
+  {
+    value: "5",
+    file: '05.png',
+    description: "Organische Formen treffen auf prägnante Farben. Starke Kontraste, für ein spannendes und optisch klares Spielerlebnis."
+  },
+  {
+    value: "6",
+    file: '06.png',
+    description: "Inspiriert wurde das Design vom taktischen Positionsspiel im Basketball. Der Basketballsport enthält dynamische Bewegungen und Abläufe. In unserer Gestaltung nehmen wir der Gestaltung direkt Bezug darauf. Jede Teamseite ist hierbei optisch gut erkennbar."
+  },
+  {
+    value: "7",
+    file: '07.png',
+    description: 'Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function.'
+  },
+  {
+    value: "8",
+    file: '08.png',
+    description: "Der Kandinsky für den Park. Die Farben und abstrakten Formen des Designs sind inspiriert von der Kunst des Malers Wassily Kandinsky und verbinden viele Punkte aus der Geschichte des Basketball."
+  }
 ]
 
 const MAX_DAILY_VOTES = 5
@@ -48,6 +80,7 @@ async function getIpVotes(ip: string) {
 }
 
 export async function GET(request: Request) {
+  const shuffledCourtData = courtData.sort(() => 0.5 - Math.random())
   const { searchParams } = new URL(request.url)
   const email = searchParams.get('email') || ''
 
@@ -57,7 +90,7 @@ export async function GET(request: Request) {
   const ipVotes = await getIpVotes(ip)
 
   if (ipVotes.length > MAX_DAILY_VOTES) {
-    return NextResponse.json({ votedToday: true, courtData }, { status: 403 })
+    return NextResponse.json({ votedToday: true, courtData: shuffledCourtData }, { status: 403 })
   }
 
   const user = await prisma.user.findUnique({
@@ -73,7 +106,7 @@ export async function GET(request: Request) {
     }
   })
 
-  return NextResponse.json({ user, votedToday: checkedVotedToday(user?.votes), courtData })
+  return NextResponse.json({ user, votedToday: checkedVotedToday(user?.votes), courtData: shuffledCourtData })
 }
 
 export async function POST(request: Request) {
