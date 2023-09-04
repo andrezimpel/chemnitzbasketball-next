@@ -56,6 +56,7 @@ function checkedVotedToday(votes: Vote[] = []) {
 
   const arr = votes.map(vote => {
     const createdAt = new Date(vote.createdAt)
+    console.log({ vote, t: moment(vote.createdAt).isSame(new Date(), "day") })
     return createdAt.getDate() === today.getDate() &&
       createdAt.getMonth() === today.getMonth() &&
       createdAt.getFullYear() === today.getFullYear()
