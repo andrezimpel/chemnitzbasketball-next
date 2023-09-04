@@ -9,7 +9,7 @@ const courtData = [
   {
     value: "1",
     file: '01.png',
-    description: 'Auf dem Brühl steht ein großes Zuhause. Der neue Court soll ein Zuhause für alle, die Basketball lieben, werden. Seine abstrakten Formen greifen die Spiellinien auf und bilden das Wort "Home".'
+    description: 'Auf dem Brühl steht ein großes "Zuhause". Der neue Court soll ein Zuhause für alle die Basketball lieben werden. Seine abstrakten Formen greifen die Spiellinien auf und bilden das Wort "Home". Er soll dafür sorgen, dass sich Menschen verbinden.'
   },
   {
     value: "2",
@@ -34,7 +34,7 @@ const courtData = [
   {
     value: "6",
     file: '06.png',
-    description: "Inspiriert wurde das Design vom taktischen Positionsspiel im Basketball. Der Basketballsport enthält dynamische Bewegungen und Abläufe. In unserer Gestaltung nehmen wir der Gestaltung direkt Bezug darauf. Jede Teamseite ist hierbei optisch gut erkennbar."
+    description: "Inspiriert wurde das Design vom taktischen Positionsspiel im Basketball. Der Basketballsport enthält dynamische Bewegungen und Abläufe. In unserer Gestaltung nehmen direkt Bezug darauf. Jede Teamseite ist hierbei optisch gut erkennbar."
   },
   {
     value: "7",
@@ -44,7 +44,7 @@ const courtData = [
   {
     value: "8",
     file: '08.png',
-    description: "Der Kandinsky für den Park. Die Farben und abstrakten Formen des Designs sind inspiriert von der Kunst des Malers Wassily Kandinsky und verbinden viele Punkte aus der Geschichte des Basketball."
+    description: 'Ein modernes und klares Design. Es verkörpert das Sprichwort "weniger ist mehr" und überzeugt mit seinem Interpretationsspielraum.'
   }
 ]
 
