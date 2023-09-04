@@ -31,6 +31,22 @@ function checkedVotedToday(votes: Vote[] = []) {
   return arr.includes(true)
 }
 
+async function getIpVotes(ip: string) {
+  const now = new Date()
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  const endOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
+
+  return await prisma.vote.findMany({
+    where: {
+      ipAddress: ip,
+      createdAt: {
+        gte: startOfToday,
+        lt: endOfToday
+      }
+    }
+  })
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const email = searchParams.get('email') || ''
@@ -38,11 +54,7 @@ export async function GET(request: Request) {
   const headersList = headers()
   const ip = headersList.get('x-ip-from-middleware')
 
-  const ipVotes = await prisma.vote.findMany({
-    where: {
-      ipAddress: ip
-    }
-  })
+  const ipVotes = await getIpVotes(ip)
 
   if (ipVotes.length > MAX_DAILY_VOTES) {
     return NextResponse.json({ votedToday: true, courtData }, { status: 403 })
@@ -70,11 +82,7 @@ export async function POST(request: Request) {
   const headersList = headers()
   const ip = headersList.get('x-ip-from-middleware')
 
-  const ipVotes = await prisma.vote.findMany({
-    where: {
-      ipAddress: ip
-    }
-  })
+  const ipVotes = await getIpVotes(ip)
 
   if (ipVotes.length > MAX_DAILY_VOTES) {
     return NextResponse.json({ votedToday: true }, { status: 403 })
