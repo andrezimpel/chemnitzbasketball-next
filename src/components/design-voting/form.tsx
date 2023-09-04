@@ -55,7 +55,7 @@ function Component(data) {
   const { user, votedToday } = state
   const { courtData } = data
 
-  const { register, handleSubmit, watch, formState: { errors, isSubmitSuccessful } } = useForm<Inputs>({
+  const { register, handleSubmit, watch, formState: { errors, isSubmitting, isSubmitSuccessful } } = useForm<Inputs>({
     defaultValues: {
       design: [],
       email: user?.email || "",
@@ -170,7 +170,7 @@ function Component(data) {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={twMerge(
-          (votedToday || isSubmitSuccessful) && "pointer-events-none opacity-70",
+          isSubmitting && "pointer-events-none opacity-70",
           "space-y-6"
         )}
       >
