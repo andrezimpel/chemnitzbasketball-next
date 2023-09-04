@@ -9,7 +9,7 @@ import Messages, { Message } from '../components/messages'
 
 export const metadata: Metadata = {
   title: 'Startseite | CHEMNITZ BASKETBALL',
-  description: '...',
+  description: 'Du kannst jetzt für das Design unseres neuen Basketballplatzes abstimmen.',
 }
 
 function splitToChunks(array: Message[], parts: number) {
