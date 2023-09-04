@@ -32,7 +32,9 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const email = searchParams.get('email')
 
-  console.log({ email })
+  const res = await fetch("https://api.ipify.org?format=json")
+  const _res = await res.json()
+  console.log({ _res })
 
   const user = await prisma.user.findUnique({
     where: {
@@ -47,17 +49,13 @@ export async function GET(request: Request) {
     }
   })
 
-  const votedToday = checkedVotedToday(user?.votes)
-
-  console.log({ user, votedToday })
-
-  return NextResponse.json({ user, votedToday, courtData })
+  return NextResponse.json({ user, votedToday: checkedVotedToday(user?.votes), courtData })
 }
 
 export async function POST(request: Request) {
   const { email, design, namespace = 'default' } = await request.json()
 
-  console.log({ request })
+  console.log({ r: request.headers })
 
   const _user = await prisma.user.findUnique({
     where: {
