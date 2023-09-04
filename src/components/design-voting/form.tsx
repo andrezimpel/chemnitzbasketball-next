@@ -119,7 +119,7 @@ function Component(data) {
             />
           ))}
         </div>
-        {!votedToday && (
+        {(!votedToday && !isSubmitSuccessful) && (
           <>
             <div className="space-y-2">
               <Input
