@@ -37,7 +37,7 @@ export default function DesignVoting() {
         </div>
         <div className='animate-bounce md:text-lg md:text-justify text-transparent text-white flex gap-2 text-center justify-center items-center font-overpass'>
           <div>👇</div>
-          <div className="text-purple-200">
+          <div className="text-purple-200 leading-5">
             Scroll jetzt nach unten, um alle Designs zu sehen und abzustimmen.
           </div>
           <div>👇</div>
