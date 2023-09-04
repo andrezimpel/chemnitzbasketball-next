@@ -1,20 +1,13 @@
+import Image from 'next/image'
 import VideoPlayer from "../video-player"
 import DesignVotingFrorm from './form'
 
 const artists = [
-  [
-    { name: "Alexander Seypt", file: "alexander.jpg" }
-  ],
-  [
-    { name: "Alexander Seypt", file: "alexander.jpg" }
-  ],
-  [
-    { name: "Alexander Seypt", file: "alexander.jpg" },
-    { name: "Alexander Seypt", file: "alexander.jpg" }
-  ],
-  [
-    { name: "Alexander Seypt", file: "alexander.jpg" }
-  ]
+  { name: "Alexander Seypt", file: "alexander.jpg" },
+  { name: "Alexander Seypt", file: "alexander.jpg" },
+  { name: "Alexander Seypt", file: "alexander.jpg" },
+  { name: "Alexander Seypt", file: "alexander.jpg" },
+  { name: "Alexander Seypt", file: "alexander.jpg" }
 ]
 
 export default function DesignVoting() {
@@ -39,8 +32,8 @@ export default function DesignVoting() {
       </div>
       <div className="space-y-8">
         <div className="mt-10 font-overpass space-y-4">
-          <p className='md:text-lg md:text-justify'>Wir haben fünf talentierte Künstler*innen ins Boot geholt, und jede*r von ihnen hat zwei Designs für unseren neuen Court gestaltet. Oberhalb findest du ein Video, das den gesamten Abstimmungsprozess erklärt. Schau es dir unbedingt an!</p>
-          <p className='md:text-lg md:text-justify'>Die Zeit läuft! Die Abstimmung endet am <u>10. September</u>. Verpasse nicht die Chance, deine Stimme für das zukünftige Herzstück unserer Basketball-Community abzugeben!</p>
+          <p className='md:text-lg md:text-justify'>Wir haben fünf talentierte Künstler*innen ins Boot geholt und jede*r von ihnen hat zwei Designs für unseren neuen Court gestaltet. Oberhalb findest du ein Video, das den Abstimmungsprozess erklärt. Schau es dir unbedingt an!</p>
+          <p className='md:text-lg md:text-justify'>Die Abstimmung endet am <u>10. September</u>. Verpasse nicht die Chance, deine Stimme für das zukünftige Herzstück unserer Basketball-Community abzugeben!</p>
         </div>
         <div className='animate-bounce md:text-lg md:text-justify text-transparent text-white flex gap-2 text-center justify-center items-center font-overpass'>
           <div>👇</div>
@@ -54,10 +47,19 @@ export default function DesignVoting() {
         </div>
         <div className="mt-10 space-y-4">
           <h2 className="text-xl uppercase">Artists</h2>
-          <p className='font-overpass md:text-lg md:text-justify'>Während des Votings könnt ihr <u>nicht</u> sehen, welche*r Künstler*in welches Design erstellt hat. Es geht nicht darum, für die Person zu stimmen, die wir am meisten mögen, sondern um das beste Design.</p>
-          <div>
+          <p className='font-overpass md:text-lg md:text-justify'>Während des Votings könnt ihr <u>nicht</u> sehen, welcher Artist welches Design erstellt hat. Es geht nicht darum, für die Person zu stimmen, die wir am meisten mögen, sondern um das beste Design.</p>
+          <div className='space-y-4'>
             {artists.map((artist, index) => (
-              <div key={index}>hi</div>
+              <div key={index} className="flex gap-4 items-center">
+                <Image
+                  className='w-28 rounded-full border-4 border-purple-600'
+                  src={`/images/artists/${artist.file}`}
+                  width={112}
+                  height={112}
+                  alt={`Artist #${artist.name}`}
+                />
+                {artist.name}
+              </div>
             ))}
           </div>
         </div>

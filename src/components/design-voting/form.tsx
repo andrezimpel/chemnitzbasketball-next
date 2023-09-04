@@ -44,13 +44,15 @@ export default function DesignVotingFrorm() {
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error. Shit.</div>
+  const { courtData } = data
 
-  return <Component {...data} />
+  return <Component {...data} courtData={courtData} />
 }
 
 function Component(data) {
   const [state, setState] = useState<State>(data)
-  const { user, votedToday, courtData } = state
+  const { user, votedToday } = state
+  const { courtData } = data
 
   const { register, handleSubmit, watch, formState: { errors, isSubmitSuccessful } } = useForm<Inputs>({
     defaultValues: {
@@ -88,13 +90,13 @@ function Component(data) {
   return (
     <div id="votingForm" className="relative space-y-6">
       {votedToday && (
-        <div className='text-white bg-purple-500 rounded-lg p-4 space-y-4'>
+        <div className='text-white bg-purple-500 rounded-lg p-4 space-y-4 font-overpass'>
           <p>Du hast heute schon abgestimmt. Wir freuen uns sehr, wenn du deine Stimme morgen erneut abgibst.</p>
           <p>🏀🖤🤎❤️🧡💛💚💙💜🤍</p>
         </div>
       )}
       {!votedToday && isSubmitSuccessful && (
-        <div className='text-white bg-purple-500 rounded-lg p-4 space-y-4'>
+        <div className='text-white bg-purple-500 rounded-lg p-4 space-y-4 font-overpass'>
           <p>Wir freuen uns ganz sehr über deine Stimme! Du erhältst eine E-Mail mit einem Link, den du bestätigen musst, damit deine Stimme zählt. Das machen wir, um deine Stimme zu verifizieren.</p>
           <p>🏀🖤🤎❤️🧡💛💚💙💜🤍</p>
         </div>
