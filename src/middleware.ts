@@ -8,6 +8,14 @@ export function middleware(request: NextRequest) {
 
   console.log({ rm: request })
 
+  let ip = request.ip ?? request.headers.get('x-real-ip')
+  const forwardedFor = request.headers.get('x-forwarded-for')
+  if (!ip && forwardedFor) {
+    ip = forwardedFor.split(',').at(0) ?? 'Unknown'
+  }
+
+  console.log({ ip })
+
   // You can also set request headers in NextResponse.rewrite
   const response = NextResponse.next({
     request: {
