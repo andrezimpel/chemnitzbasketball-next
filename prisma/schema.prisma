@@ -17,9 +17,11 @@ model User {
   emailVerified          DateTime?
   emailVerificationToken String?   @unique @default(cuid())
   image                  String?
-  createdAt              DateTime  @default(now())
-  updatedAt              DateTime  @updatedAt
-  votes                  Vote[]
+  role                   String    @default("user")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  votes     Vote[]
 }
 
 model Vote {
