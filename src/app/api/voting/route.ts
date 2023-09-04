@@ -86,9 +86,6 @@ export async function GET(request: Request) {
 
   const headersList = headers()
   const ip = headersList.get('x-ip-from-middleware')
-  const geo = JSON.parse(headersList.get('x-geo') || '{}')
-
-  console.log({ geoInGet: geo })
 
   const ipVotes = await getIpVotes(ip)
 
@@ -141,9 +138,7 @@ export async function POST(request: Request) {
 
   if (hasVoteToday) return NextResponse.json({ user: _user, votedToday: true })
 
-  const geo = headersList.get('x-geo')
-
-  console.log({ geo })
+  const geo = JSON.parse(headersList.get('x-geo') || '{}')
 
   const voteOptions = design.map(val => {
     return { value: val }
@@ -152,6 +147,7 @@ export async function POST(request: Request) {
   const votes = {
     create: {
       ipAddress: ip,
+      geoData: geo,
       namespace: namespace,
       voteOptions: {
         create: voteOptions
