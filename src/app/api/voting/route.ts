@@ -32,8 +32,6 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const email = searchParams.get('email') || ''
 
-  // console.log({ h: request.headers })
-
   const user = await prisma.user.findUnique({
     where: {
       email
@@ -53,7 +51,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const { email, design, namespace = 'default' } = await request.json()
 
-  // console.log({ r: request.headers })
+  console.log({ ip: request.headers['x-ip-from-middleware'] })
 
   const _user = await prisma.user.findUnique({
     where: {

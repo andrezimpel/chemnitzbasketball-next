@@ -6,19 +6,15 @@ export const config = {
 }
 
 export function middleware(request: NextRequest) {
-  // Clone the request headers and set a new header `x-hello-from-middleware1`
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set('x-hello-from-middleware1', 'hello')
-
-  console.log({ rm: request })
-
   let ip = request.ip ?? request.headers.get('x-real-ip')
   const forwardedFor = request.headers.get('x-forwarded-for')
   if (!ip && forwardedFor) {
     ip = forwardedFor.split(',').at(0) ?? 'Unknown'
   }
 
-  console.log({ ip })
+  // Clone the request headers and set a new header `x-hello-from-middleware1`
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-ip-from-middleware', ip)
 
   // You can also set request headers in NextResponse.rewrite
   const response = NextResponse.next({
@@ -28,7 +24,5 @@ export function middleware(request: NextRequest) {
     },
   })
 
-  // Set a new response header `x-hello-from-middleware2`
-  response.headers.set('x-hello-from-middleware2', 'hello')
   return response
 }
