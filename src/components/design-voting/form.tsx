@@ -42,7 +42,7 @@ export default function DesignVotingFrorm() {
     fetcher
   )
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <div>Designs laden...</div>
   if (error) return <div>Error. Shit.</div>
   const { courtData } = data
 
