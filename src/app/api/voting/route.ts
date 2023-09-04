@@ -16,6 +16,8 @@ const courtData = [
   { value: "8", file: '08.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." }
 ]
 
+const MAX_DAILY_VOTES = 5
+
 function checkedVotedToday(votes: Vote[] = []) {
   const today = new Date()
 
@@ -36,7 +38,15 @@ export async function GET(request: Request) {
   const headersList = headers()
   const ip = headersList.get('x-ip-from-middleware')
 
-  console.log({ ip })
+  const ipVotes = await prisma.vote.findMany({
+    where: {
+      ipAddress: ip
+    }
+  })
+
+  if (ipVotes.length > MAX_DAILY_VOTES) {
+    return NextResponse.json({ votedToday: true, courtData }, { status: 403 })
+  }
 
   const user = await prisma.user.findUnique({
     where: {
@@ -57,7 +67,18 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const { email, design, namespace = 'default' } = await request.json()
 
-  console.log({ ip: request.headers })
+  const headersList = headers()
+  const ip = headersList.get('x-ip-from-middleware')
+
+  const ipVotes = await prisma.vote.findMany({
+    where: {
+      ipAddress: ip
+    }
+  })
+
+  if (ipVotes.length > MAX_DAILY_VOTES) {
+    return NextResponse.json({ votedToday: true }, { status: 403 })
+  }
 
   const _user = await prisma.user.findUnique({
     where: {
@@ -82,6 +103,7 @@ export async function POST(request: Request) {
 
   const votes = {
     create: {
+      ipAddress: ip,
       namespace: namespace,
       voteOptions: {
         create: voteOptions
