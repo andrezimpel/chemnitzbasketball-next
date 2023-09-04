@@ -3,6 +3,17 @@ import { NextResponse } from 'next/server'
 
 const prisma = new PrismaClient()
 
+const courtData = [
+  { value: "1", file: '01.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
+  { value: "2", file: '02.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
+  { value: "3", file: '03.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
+  { value: "4", file: '04.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
+  { value: "5", file: '05.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
+  { value: "6", file: '06.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
+  { value: "7", file: '07.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." },
+  { value: "8", file: '08.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." }
+]
+
 function checkedVotedToday(votes = []) {
   const today = new Date()
 
@@ -39,7 +50,7 @@ export async function GET(request: Request) {
 
   console.log({ user, votedToday })
 
-  return NextResponse.json({ user, votedToday })
+  return NextResponse.json({ user, votedToday, courtData })
 }
 
 export async function POST(request: Request) {

@@ -1,5 +1,7 @@
 'use client'
 
+import { Disclosure } from '@headlessui/react'
+import { ChevronUpIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import { useMemo, useState } from 'react'
 import { FieldErrors, SubmitHandler, useForm, UseFormRegister } from "react-hook-form"
@@ -7,17 +9,6 @@ import useSWR from "swr"
 import { twMerge } from 'tailwind-merge'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
-
-const courtData = [
-  { value: "1", file: '01.png' },
-  { value: "2", file: '02.png' },
-  { value: "3", file: '03.png' },
-  { value: "4", file: '04.png' },
-  { value: "5", file: '05.png' },
-  { value: "6", file: '06.png' },
-  { value: "7", file: '07.png' },
-  { value: "8", file: '08.png' }
-]
 
 type Inputs = {
   design: string[],
@@ -34,6 +25,11 @@ type State = {
     }
   },
   votedToday: boolean
+  courtData: {
+    value: string
+    file: string
+    description: string
+  }[]
 }
 
 const NAMESPACE = 'courtDesign'
@@ -54,7 +50,7 @@ export default function DesignVotingFrorm() {
 
 function Component(data) {
   const [state, setState] = useState<State>(data)
-  const { user, votedToday } = state
+  const { user, votedToday, courtData } = state
 
   const { register, handleSubmit, watch, formState: { errors, isSubmitSuccessful } } = useForm<Inputs>({
     defaultValues: {
@@ -90,7 +86,7 @@ function Component(data) {
   }
 
   return (
-    <div id="votingForm" className="border-2 rounded-lg border-purple-600 p-2 md:p-6 relative space-y-6">
+    <div id="votingForm" className="relative space-y-6">
       {votedToday && (
         <div className='text-white bg-purple-500 rounded-lg p-4 space-y-4'>
           <p>Du hast heute schon abgestimmt. Wir freuen uns sehr, wenn du deine Stimme morgen erneut abgibst.</p>
@@ -111,14 +107,13 @@ function Component(data) {
         )}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {courtData.map(({ value, file }) => (
+          {courtData.map((courtDesign) => (
             <Option
-              key={value}
+              key={courtDesign.value}
+              {...courtDesign}
               register={register}
-              value={value}
               selected={design}
               disabled={count > 2}
-              file={file}
             />
           ))}
         </div>
@@ -150,38 +145,55 @@ function Component(data) {
   )
 }
 
-function Option({ register, value, selected, disabled, file }: { register: any, value: string, selected: string[], disabled: boolean, file?: string }) {
+function Option({ register, value, selected, disabled, file, description }: { register: any, value: string, selected: string[], disabled: boolean, file?: string, description: string }) {
   const isSelected = useMemo(() => {
     return (selected || [])?.includes(value) || false
   }, [selected])
 
   const classNameLabel: string = useMemo(() => {
     return twMerge(
-      'text-gray-500 cursor-pointer bg-stone-800 hover:bg-stone-400 rounded-2xl p-2 relative',
+      'text-gray-500 cursor-pointer bg-stone-800 hover:bg-stone-400 rounded-2xl p-2 relative block',
       disabled && !isSelected && "cursor-not-allowed pointer-events-none opacity-50",
       isSelected && "bg-stone-300 hover:bg-stone-100",
     )
   }, [isSelected, disabled])
 
   return (
-    <label className={classNameLabel}>
-      {isSelected && (
-        <div className='bg-pink-500 rounded-lg p-2 fill-white inline-block absolute -right-1 -top-1'>
-          <svg className='w-6 h-6' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-            <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-          </svg>
-        </div>
-      )}
-      <input type="checkbox" defaultValue={value} {...register("design")} className="hidden" />
-      <Image
-        className='w-full'
-        src={`/images/court-designs/${file}`}
-        width={500}
-        height={500}
-        alt={`Design #${value}`}
-      />
-      <div className='font-overpass text-white leading-5 mt-4'>Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function.</div>
-    </label>
+    <div>
+      <label className={classNameLabel}>
+        {isSelected && (
+          <div className='bg-blue-500 rounded-lg p-2 fill-white inline-block absolute -right-1 -top-1'>
+            <svg className='w-6 h-6' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+              <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+            </svg>
+          </div>
+        )}
+        <input type="checkbox" defaultValue={value} {...register("design")} className="hidden" />
+        <Image
+          className='w-full'
+          src={`/images/court-designs/${file}`}
+          width={500}
+          height={500}
+          alt={`Design #${value}`}
+        />
+      </label>
+      <Disclosure>
+        {({ open }) => (
+          <>
+            <Disclosure.Button className="flex w-full p-2.5 text-left text-sm font-medium text-purple-50 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 font-overpass hover:underline space-x-2">
+              <span className='translate-y-0.5'>Mehr zur Idee?</span>
+              <ChevronUpIcon
+                className={`${open ? 'rotate-180 transform' : ''
+                  } h-5 w-5 text-purple-50`}
+              />
+            </Disclosure.Button>
+            <Disclosure.Panel className="font-overpass text-sm leading-5 p-2">
+              {description}
+            </Disclosure.Panel>
+          </>
+        )}
+      </Disclosure>
+    </div>
   )
 }
 
