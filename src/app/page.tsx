@@ -8,7 +8,7 @@ import Invitations from '../components/invitations'
 import Messages, { Message } from '../components/messages'
 
 export const metadata: Metadata = {
-  title: 'Startseite',
+  title: 'Startseite | CHEMNITZ BASKETBALL',
   description: '...',
 }
 

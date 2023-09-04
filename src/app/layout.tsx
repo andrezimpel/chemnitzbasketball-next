@@ -11,8 +11,8 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: {
-    template: 'CHEMNITZ BASKETBALL',
-    absolute: "CHEMNITZ BASKETBALL",
+    template: '%s | CHEMNITZ BASKETBALL',
+    absolute: 'CHEMNITZ BASKETBALL',
   },
 }
 
