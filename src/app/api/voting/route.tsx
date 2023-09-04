@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
 
 const prisma = new PrismaClient()
 
@@ -108,6 +109,44 @@ export async function POST(request: Request) {
       }
     }
   })
+
+  if (!user.emailVerified) {
+    const transporter = nodemailer.createTransport({
+      host: "mail-de.maxcluster.net",
+      port: 587,
+      secure: false, // upgrade later with STARTTLS
+      auth: {
+        user: process.env.MAIL_ADDRESS,
+        pass: process.env.MAIL_PASSWORD,
+      },
+    })
+
+    const text = `
+Damit deine Stimme(n) zählen, müssen wir deine E-Mail-Adresse bestätigen. Klicke dazu einfach auf den folgenden Link:
+\n
+${process.env.BASE_URL}/voting/verify/${user.emailVerificationToken}
+\n
+Vielen Dank für deine Teilnahme!
+Chemnitz Basketball
+    `
+
+    let mailOptions = {
+      from: 'CHEMNITZ BASKETBALL <contact@chemnitzbasketball.com>',
+      to: 'andrezimpel@me.com',
+      subject: 'Bitte bestätige deine E-Mail-Adresse',
+      text
+    }
+
+    await transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error)
+      } else {
+        console.log('Email sent: ' + info.response)
+      }
+    })
+
+    console.log("send verification email now")
+  }
 
   return NextResponse.json({ user, votedToday: false })
 }
