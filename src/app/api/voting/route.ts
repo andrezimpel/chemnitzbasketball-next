@@ -32,9 +32,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const email = searchParams.get('email') || ''
 
-  const res = await fetch("https://api.ipify.org?format=json")
-  const _res = await res.json()
-  console.log({ _res })
+  // console.log({ h: request.headers })
 
   const user = await prisma.user.findUnique({
     where: {
@@ -55,7 +53,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const { email, design, namespace = 'default' } = await request.json()
 
-  console.log({ r: request.headers })
+  // console.log({ r: request.headers })
 
   const _user = await prisma.user.findUnique({
     where: {
