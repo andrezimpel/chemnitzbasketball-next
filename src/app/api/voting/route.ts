@@ -73,11 +73,9 @@ async function getIpVotes(ip: string) {
     startOfToday, endOfToday
   })
 
-  const _ip = "79.195.54.53"
-
   const votis = await prisma.vote.findMany({
     where: {
-      ipAddress: _ip,
+      ipAddress: ip,
       createdAt: {
         gte: startOfToday,
         lt: endOfToday
