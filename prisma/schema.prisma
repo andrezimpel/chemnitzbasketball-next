@@ -25,7 +25,7 @@ model User {
 model Vote {
   id          String       @id @unique @default(cuid())
   namespace   String
-  ipAdress    String?
+  ipAddress   String?
   userId      String
   user        User         @relation(fields: [userId], references: [id])
   createdAt   DateTime     @default(now())
