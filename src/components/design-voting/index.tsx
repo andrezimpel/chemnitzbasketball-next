@@ -4,11 +4,11 @@ import VideoPlayer from "../video-player"
 import DesignVotingFrorm from './form'
 
 const artists = [
-  { name: "Alexander Seypt", file: "alexander.jpg", instagram: "@whatever" },
-  { name: "Alexander Seypt", file: "alexander.jpg", instagram: "@whatever" },
-  { name: "Alexander Seypt", file: "alexander.jpg" },
-  { name: "Alexander Seypt", file: "alexander.jpg", instagram: "@whatever" },
-  { name: "Alexander Seypt", file: "alexander.jpg", instagram: "@whatever" }
+  { name: "Alexander Seypt", file: "alexander.jpg", instagram: "seyptbereit" },
+  { name: "Andre Zimpel", file: "andre.jpg", instagram: "andrezimpel" },
+  { name: "Antonia Viola", file: "antonia.jpg", instagram: "antoniaviola_com" },
+  { name: "Johanna Hertel", file: "johanna.jpg", instagram: "johannahertel" },
+  { name: "Sybille Hornung", file: "sybille.jpg", instagram: "sibvlle" }
 ]
 
 export default function DesignVoting() {
