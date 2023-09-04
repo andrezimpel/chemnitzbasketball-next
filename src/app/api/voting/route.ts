@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Vote } from '@prisma/client'
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
@@ -15,7 +15,7 @@ const courtData = [
   { value: "8", file: '08.png', description: "Kraftvollen Farbverläufe, klaren Linien und markierte Shooting-Spots von NBA-Stars, die über QR-Codes weitere Stats und Infos bieten. Form meets function." }
 ]
 
-function checkedVotedToday(votes = []) {
+function checkedVotedToday(votes: Vote[] = []) {
   const today = new Date()
 
   const arr = votes.map(vote => {
@@ -30,7 +30,7 @@ function checkedVotedToday(votes = []) {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const email = searchParams.get('email')
+  const email = searchParams.get('email') || ''
 
   const res = await fetch("https://api.ipify.org?format=json")
   const _res = await res.json()
