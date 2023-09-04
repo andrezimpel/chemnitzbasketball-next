@@ -50,7 +50,7 @@ export default function DesignVotingFrorm() {
 }
 
 function Component(data) {
-  const [showMaxVotesNotice, setShowMaxVotesNotice] = useState<boolean>(true)
+  const [showMaxVotesNotice, setShowMaxVotesNotice] = useState<boolean>(false)
   const [state, setState] = useState<State>(data)
   const { user, votedToday } = state
   const { courtData } = data
