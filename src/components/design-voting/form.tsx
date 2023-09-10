@@ -204,7 +204,7 @@ function Component(data) {
                   "uppercase font-bold inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 pt-2.5 pb-1.5 text-sm text-white shadow-sm hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2",
                   (count === 0 || email === "") && "cursor-not-allowed pointer-events-none bg-purple-200",
                 )}
-              >Weiter</button>
+              >Abstimmen</button>
             </div>
           </>
         )}
