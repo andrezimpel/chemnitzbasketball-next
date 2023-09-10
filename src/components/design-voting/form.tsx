@@ -2,6 +2,7 @@
 
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/20/solid'
+import moment from 'moment'
 import Image from 'next/image'
 import { Fragment, useMemo, useState } from 'react'
 import { FieldErrors, SubmitHandler, useForm, UseFormRegister } from "react-hook-form"
@@ -35,7 +36,23 @@ type State = {
 const NAMESPACE = 'courtDesign'
 const isBrowser = typeof window !== "undefined"
 
-export default function DesignVotingFrorm() {
+export default function Comp() {
+  const now = moment()
+  const deadline = moment("2023-09-10").endOf('day')
+
+  if (now.isAfter(deadline)) {
+    return <ItsOver />
+  }
+  return <DesignVotingFrorm />
+}
+
+function ItsOver() {
+  return (
+    <div className='text-purple-400'>Das Voting ist beendet und das Design für unseren neuen Court wird bald veröffentlicht.</div>
+  )
+}
+
+export function DesignVotingFrorm() {
   const email = isBrowser && localStorage.getItem(NAMESPACE)
   const { data, error, isLoading } = useSWR(
     `/api/voting?email=${encodeURIComponent(email)}`,
@@ -98,6 +115,13 @@ function Component(data) {
 
   return (
     <div id="votingForm" className="relative space-y-6">
+      <div className='animate-bounce md:text-lg md:text-justify text-transparent text-white flex gap-2 text-center justify-center items-center font-overpass'>
+        <div>👇</div>
+        <div className="text-purple-200 leading-5">
+          Scroll jetzt nach unten, um alle Designs zu sehen und abzustimmen.
+        </div>
+        <div>👇</div>
+      </div>
       <Transition appear show={showMaxVotesNotice} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child

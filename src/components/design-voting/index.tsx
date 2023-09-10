@@ -35,13 +35,6 @@ export default function DesignVoting() {
           <p className='md:text-lg md:text-justify'>Wir haben fünf talentierte Künstler*innen ins Boot geholt und jede*r von ihnen hat zwei Designs für unseren neuen Court gestaltet. Oberhalb findest du ein Video, das den Abstimmungsprozess erklärt. Schau es dir unbedingt an!</p>
           <p className='md:text-lg md:text-justify'>Die Abstimmung endet am <u>10. September</u>. Verpasse nicht die Chance, deine Stimme für das zukünftige Herzstück unserer Basketball-Community abzugeben!</p>
         </div>
-        <div className='animate-bounce md:text-lg md:text-justify text-transparent text-white flex gap-2 text-center justify-center items-center font-overpass'>
-          <div>👇</div>
-          <div className="text-purple-200 leading-5">
-            Scroll jetzt nach unten, um alle Designs zu sehen und abzustimmen.
-          </div>
-          <div>👇</div>
-        </div>
         <div>
           <DesignVotingFrorm />
         </div>
