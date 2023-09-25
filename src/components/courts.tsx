@@ -98,7 +98,7 @@ export default function Courts() {
           <p className='md:text-lg md:text-justify underline'>Das Design unseres neuen Basketballplatzes steht fest! 🏀</p>
           <p className='md:text-lg md:text-justify'>Wir freuen uns sehr über die große Beteiligung. In der ersten Runde hatten wir über 2000 bestätigte Stimmen. Dabei setzten sich drei von acht Designs an die Spitze und lagen extrem nah beieinander.</p>
           <p className='md:text-lg md:text-justify'>In der finalen Runde haben über 1000 Menschen ihren Favoriten aus den Top drei ausgewählt. Auf dem ersten Platz liegt "Home" mit 41% von Andre Zimpel & Alex Rabtschuk, gefolgt von "Floater" mit 34% von Alexander Seypt und auf dem dritten Platz "Dynamic Lines" mit 25% von Antonia Viola & Sibylle Hornung.</p>
-          <p className='md:text-lg md:text-justify'>Unser neuer Basketballplatz am Konkordiapark spiegelt somit das wider, was er ist und sein soll: ein Zuhause für uns alle.Ein Ort der Begegnung, an dem jede * r willkommen ist.Es könnte sein, dass das ein oder andere Design seinen Weg auf einen anderen Platz in Chemnitz finden wird. 👀</p >
+          <p className='md:text-lg md:text-justify'>Unser neuer Basketballplatz am Konkordiapark spiegelt somit das wider, was er ist und sein soll: ein Zuhause für uns alle.Ein Ort der Begegnung, an dem jede*r willkommen ist.Es könnte sein, dass das ein oder andere Design seinen Weg auf einen anderen Platz in Chemnitz finden wird. 👀</p >
           <p className='md:text-lg md:text-justify'>Wir werden euch auf dem Laufenden halten, welche Schritte nun als Nächstes anstehen! 🚀</p >
         </div>
       </div>
