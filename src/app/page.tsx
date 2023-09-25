@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import About from '../components/about'
 import Architecture from '../components/architecture'
-import DesignVoting from '../components/design-voting'
+import Courts from '../components/courts'
 import Event from '../components/event'
 import Faq from '../components/faq'
 import Invitations from '../components/invitations'
@@ -48,7 +48,7 @@ export default async function IndexPage() {
 
   return (
     <div className="space-y-8 md:space-y-14">
-      <DesignVoting />
+      <Courts />
       <Messages chunks={data} />
       <Architecture />
       <About />
